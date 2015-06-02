@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'StationMedium';
+    src: url('station.eot');
+    src: url('station.eot') format('embedded-opentype'),
+         url('station.woff2') format('woff2'),
+         url('station.woff') format('woff'),
+         url('station.ttf') format('truetype'),
+         url('station.svg#StationMedium') format('svg');
+}

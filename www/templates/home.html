@@ -1,0 +1,48 @@
+<ion-view title='<img class="title-image" src="img/logo.png" /> Home' hide-back-button="true" class="bar-header bar-light">
+ <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons> 
+  <ion-content class="has-header content-stable">
+  
+  <div class="list card" ng-repeat="news in news.slice().reverse()">
+
+  <div class="item item-avatar" style="background: #4A87EE;">
+    <img src="http://i.imgur.com/fIGRluN.png">
+    <h2 style="color: white;">SPK News</h2>
+    <p style="color: white;">{{news.date}}</p>
+  </div>
+
+  <div class="item item-body">
+    <img class="full-image" src="{{news.feedpic}}">
+    <p style="text-align: center;">
+      {{news.tidbit}} </br>
+      
+    </p>
+
+   <a href="#/app/story/{{news.$id}}" class="subdued">Read More</a>
+  </div>
+
+  <div class="item tabs tabs-secondary tabs-icon-left">
+    &nbsp;&nbsp;
+    <a class="tab-item" ng-click="shareViaTwitter(news.tidbit)">
+      <i class="icon ion-social-twitter calm"></i>
+      Tweet It!
+    </a>
+    <a class="tab-item" ng-click="shareText(news.tidbit)">
+      <i class="icon ion-android-chat balanced"></i>
+      Text It!
+    </a>
+    <a class="tab-item" ng-click="shareAnywhere(news.tidbit)">
+      <i class="icon ion-share"></i>
+      Share
+    </a>
+  </div>
+
+
+
+</div>
+
+
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,37 @@
+<ion-view title="SPORTSCENTRE"  style="background-color: #000000">
+    <ion-nav-buttons side="left">
+        <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+    </ion-nav-buttons>
+    <ion-content class="has-header">
+
+        <div class="list">
+        <div ng-repeat="game in games.slice().reverse()">
+            <div class="item item-divider sportsDivider">
+                {{game.sport}}
+            </div>
+
+            <a class="item" style="background-color: #000000">
+              <div class="sportsDate">{{game.date}}</div></br>
+                <img class="logo" ng-src="img/logo.png">
+
+                <div class="school">&nbsp;St. Peter</div>
+
+                <div class="score">{{game.homescore}}</div>
+                </br>
+                </br>
+
+                <img class="logo" ng-src="{{game.awaypic}}">
+                <div class="school">&nbsp;{{game.awayschool}}</div>
+                <div class="score">{{game.awayscore}}</div>
+
+
+
+            </a>
+            </div>
+
+
+
+        </div>
+
+    </ion-content>
+</ion-view>

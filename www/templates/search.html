@@ -1,0 +1,43 @@
+<ion-view title="Account">
+  <ion-nav-buttons side="left">
+    <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+<!--
+<form ng-submit="submitForm(news)">
+    <div class="list">
+  <label class="item item-input">
+    <input type="text" placeholder="Image" ng-model="news.feedpic">
+  </label>
+  <label class="item item-input">
+    <input type="text" placeholder="Tidbit" ng-model="news.tidbit">
+  </label>
+
+ 
+</div>
+
+<button type="submit" class="button button-positive">
+Submit
+</button>
+</form>
+-->
+<form ng-submit="submitDay(period)">
+    <div class="list">
+  <label class="item item-input">
+    <input type="text" placeholder="What do you have period 3 on a day 1?" ng-model="period.day">
+  </label>
+  <div style="text-align: center;">
+ <button type="submit" class="button button-positive">
+Submit
+</button>
+</div>
+</div>
+
+
+</form>
+
+
+
+
+  </ion-content>
+</ion-view>

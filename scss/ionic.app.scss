@@ -1,0 +1,235 @@
+/*
+To customize the look and feel of Ionic, you can override the variables
+in ionic's _variables.scss file.
+
+For example, you might change some of the default colors:
+
+$light:                           #fff !default;
+$stable:                          #f8f8f8 !default;
+$positive:                        #4a87ee !default;
+$calm:                            #43cee6 !default;
+$balanced:                        #66cc33 !default;
+$energized:                       #f0b840 !default;
+$assertive:                       #ef4e3a !default;
+$royal:                           #8a6de9 !default;
+$dark:                            #444 !default;
+*/
+
+// The path for our ionicons font files, relative to the built CSS in www/css
+$ionicons-font-path: "../lib/ionic/fonts" !default;
+
+// Include all of Ionic
+@import "www/lib/ionic/scss/ionic";
+
+i.ion-home {
+  font-size: 1.7em;
+}
+
+i.ion-social-dribbble {
+  font-size: 1.7em;
+}
+i.ion-headphone {
+  font-size: 1.7em;
+}
+i.ion-log-out {
+  font-size: 1.7em;
+}
+i.ion-information-circled {
+  font-size: 1.7em;
+}
+i.ion-settings {
+  font-size: 1.7em;
+}
+i.ion-speakerphone {
+  font-size: 1.7em;
+}
+i.ion-information-circled {
+  font-size: 1.7em;
+}
+
+.circular {
+  width: 200px;
+ height: 200px;
+ background-image: url('https://lh6.googleusercontent.com/-Ddu_Mgm3M1E/UayOxgasONI/AAAAAAAAAHw/tPOeP288XPo/w361-h360-no/photo.jpg');
+ background-size: cover;
+ display: block;
+ border-radius: 100px;
+ -webkit-border-radius: 100px;
+ -moz-border-radius: 100px;
+  }
+
+
+.homeBg {
+    background: url('../img/homeSchool.jpg') no-repeat center center fixed;
+     -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+}
+
+.container {
+  height:auto;
+  width:100%;
+  position: relative;
+  //overflow: hidden;
+
+  display: inline-block;
+
+}
+
+.container.no-g {
+  color:white;
+}
+
+.container.no-g:before {
+  content:"";
+  -webkit-filter: blur(5px);
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-image: url('../img/menuSchool.jpg');
+    background-size: 100% Auto;
+  z-index:-1;
+
+}
+
+.content p {
+	margin-top: 20%;
+  text-align: center;
+}
+
+.coolFont {
+	font-family: "Station";
+}
+
+.homeText {
+
+	color: white;
+	font-size: 400%;
+	text-align: center;
+	 position: relative;
+    top: 3.5em;
+}
+
+.homeTextSmall {
+	
+	color: white;
+	font-size: 140%;
+	text-align: center;
+	 position: relative;
+    top: 12em;
+}
+
+.google {
+	position: relative;
+    top: 23em;
+}
+.loginHelp {
+  text-align: center;
+  color: white;
+  position: relative;
+    top: 36.5em;
+}
+.day{
+	
+	color: white;
+	font-size: 140%;
+	text-align: center;
+	 position: relative;
+    top: 1em;
+	
+}
+.homeEmail {
+	text-align: center;
+	position: relative;
+  top: 29em;
+   color: white;
+}
+
+.logo {
+	width:54px; /* you can use % */
+    height: auto;
+    float: left;
+}
+
+.score {
+	text-align: right;
+	
+	color: white;
+	font-size: 1.5em;
+}
+
+.school {
+	position: relative;
+	top: 0.5em;
+	color: white;
+	font-size: 1.5em;
+}
+
+.sportsDivider {
+	color: white;
+	background-color: #3f4041;
+
+}
+
+.sportsDate {
+	color: white;
+	text-align: center;
+}
+
+/*dark is class added to ion-content, since ion-conte*/
+/*is made up of multiple pieces and is a pain to style each*/
+.dark {
+  background-color: #3f4041 !important;
+  color: #ffffff;
+}
+
+/*Set the background to transparent for ion-item*/
+.dark .item {
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid #464646;
+  border-bottom: 1px solid;
+  border-color: #333333;
+  color: #F0F1F1;
+  opacity: .7;
+}
+
+/*Changes the border for the last item*/
+.dark .item:last-child {
+  border-bottom: 2.5px solid #464646;
+  opacity: .7; 
+}
+
+/*Ion-item adds item-complex and an inner div, .item-content*/
+/* this needs to be transparent too, but doesnt need borders*/
+.dark .item-complex .item-content, .dark .item-radio .item-content {
+  background-color: transparent;
+}
+
+
+/*Just makes the type white*/
+.dark h2,
+.dark h3,
+.dark p,
+.dark a {
+  color: #F0F1F1;
+}
+
+$stable:                          #add8e6 !default;
+
+.content-stable{
+  background-color: $stable
+}
+
+.whiteText {
+  color:  #ffffff;
+}
+
+.title-image {
+  vertical-align: middle;
+  height: 40px;
+}
