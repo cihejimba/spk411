@@ -107,16 +107,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase', 'ngCordov
       }
     })
 
-    .state('app.prom', {
-      url: "/prom",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/prom.html",
-          controller: 'PromCtrl'
-        }
-      }
-    })
-
     .state('app.single', {
       url: "/playlists/:playlistId",
       views: {

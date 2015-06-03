@@ -1,22 +1,22 @@
 angular.module('starter.controllers', [])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $firebase, $state, $stateParams, $ionicPlatform) {
-     // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/modal.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
+    // Create the login modal that we will use later
+    $ionicModal.fromTemplateUrl('templates/modal.html', {
+        scope: $scope
+    }).then(function(modal) {
+        $scope.modal = modal;
+    });
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  };
+    // Triggered in the login modal to close it
+    $scope.closeLogin = function() {
+        $scope.modal.hide();
+    };
 
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
+    // Open the login modal
+    $scope.login = function() {
+        $scope.modal.show();
+    };
 
 
     var userKey;
@@ -24,10 +24,11 @@ angular.module('starter.controllers', [])
     var havePeriod;
     var dayToday;
 
-/*$ionicPlatform.ready(function() {
- navigator.splashscreen.hide();
-});*/
+    /*$ionicPlatform.ready(function() {
+     navigator.splashscreen.hide();
+    });*/
 
+    // Check what day it is, and display the appropriate period of the class.
     function checkPeriod(dayToday) {
 
         if (dayToday == 1) {
@@ -45,6 +46,7 @@ angular.module('starter.controllers', [])
         }
 
     }
+    // User Authentication
     var userRef = new Firebase("https://spkknights.firebaseio.com/");
     var auth = new FirebaseSimpleLogin(userRef, function(error, user) {
         if (error) {
@@ -52,65 +54,66 @@ angular.module('starter.controllers', [])
             console.log(error);
         } else if (user) {
             // user authenticated with Firebase  
-
             var str = user.email;
             console.log(str)
-          //  if (str.search("ocsb") != -1) {
-                console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
-                //Go to the Gyms Listings Page
+                //  if (str.search("ocsb") != -1) {
+            console.log('User ID: ' + user.uid + ', Provider: ' + user.provider);
+         
 
 
-                $scope.loggeduser = user;
-                //assign the ID of the user to the userid variable
-                userid = user.uid;
+            $scope.loggeduser = user;
+            // Assign the ID of the user to the userid variable
+            userid = user.uid;
 
-                var usersRef = new Firebase("https://spkknights.firebaseio.com/users");
+            var usersRef = new Firebase("https://spkknights.firebaseio.com/users");
 
-                var user = $firebase(usersRef);
-                $scope.user = user.$asObject();
-
-                $scope.submitDay = function(period) {
-
-
-                    user.$update(userid, {
-                        period3: period.day
-                    }).then(function(ref) {
-                        ref.key(); // bar
-
-                        userKey = ref.key();
-                        console.log(userKey);
-                    }, function(error) {
-                        console.log("Error:", error);
-                    });
+            var user = $firebase(usersRef);
+            $scope.user = user.$asObject();
+            // Function to update the user's schedule from their input
+            $scope.submitDay = function(period) {
 
 
+                user.$update(userid, {
+                    period3: period.day
+                }).then(function(ref) {
+                    ref.key(); // bar
 
-                }
-                periodRef = new Firebase("https://spkknights.firebaseio.com/users/" + userid);
-                var period = $firebase(periodRef);
-                $scope.period = period.$asObject();
-                    if (window.localStorage['didTutorial'] === "true") {
-       $state.go('app.home');
-    } else {
-        $state.go('app.tutorial');           
-    }
-              
-
-           // } 
-            
-           /*else if (str.search("ocsb") == -1) {
-
-               $scope.user = null;
-
-                auth.logout();
-                window.cookies.clear(function() {
-                    console.log("Cookies cleared!");
+                    userKey = ref.key();
+                    console.log(userKey);
+                }, function(error) {
+                    console.log("Error:", error);
                 });
 
-                $('.footer').append('<button class="button button-full button-assertive">Please login with an @ocsbstudent.ca or @ocsb.ca email.</button>');
 
 
-            } */
+            }
+
+            periodRef = new Firebase("https://spkknights.firebaseio.com/users/" + userid);
+            var period = $firebase(periodRef);
+
+            $scope.period = period.$asObject();
+            if (window.localStorage['didTutorial'] === "true") {
+                $state.go('app.home');
+            } else {
+                $state.go('app.tutorial');
+            }
+
+
+            // } 
+
+            /*else if (str.search("ocsb") == -1) {
+
+                $scope.user = null;
+
+                 auth.logout();
+                 window.cookies.clear(function() {
+                     console.log("Cookies cleared!");
+                 });
+
+                 $('.footer').append('<button class="button button-full button-assertive">Please login with an @ocsbstudent.ca or @ocsb.ca email.</button>');
+
+
+             } */
 
 
 
@@ -192,40 +195,9 @@ angular.module('starter.controllers', [])
 
     $ionicSideMenuDelegate.canDragContent(true);
     var ref = new Firebase("https://spkknights.firebaseio.com/news");
-
-    var limit = 4;
-    // you can apply startAt/endAt/limit to your references
     var limited = $firebase(ref);
 
-
     $scope.news = limited.$asArray();
-
-    // to take an action after the data loads, use $loaded() promise
-
-
-    /*
-       //Feed from Firebase
-       $scope.news = [];
-       var limit = 4; 
-       var news = new Firebase("https://spkknights.firebaseio.com/news");
-
-       news.orderByChild("posted").limitToLast(limit).on("child_added", function(snapshot) {
-          console.log(snapshot.val());
-           var newsObjects = snapshot.val();
-
-         newsObjects.forEach(function(childSnapshot) {
-
-               // key will be "fred" the first time and "wilma" the second time
-                var key = childSnapshot.key();
-                console.log(childSnapshot.val());
-                // childData will be the actual contents of the child
-                 var childData = childSnapshot.val();
-
-                $scope.news.$add(childData);
-                 console.log(childData);
-
-    });
-     */
 
 
 
@@ -253,9 +225,6 @@ angular.module('starter.controllers', [])
 
 .controller('SearchCtrl', function($scope, $stateParams, $cordovaSocialSharing, $firebase, $ionicPlatform) {
 
-
-
-
         var news = new Firebase("https://spkknights.firebaseio.com/news");
         var sync = $firebase(news);
 
@@ -274,93 +243,75 @@ angular.module('starter.controllers', [])
 
 
     })
+
     .controller('StoryCtrl', function($scope, $stateParams, $firebase, $sce) {
-        console.log($stateParams.storyId);
+
         var storyRef = new Firebase("https://spkknights.firebaseio.com/news/" + $stateParams.storyId);
         var limited = $firebase(storyRef);
+
         $scope.story = limited.$asObject();
+
         var storyObject = limited.$asObject();
-         storyObject.$loaded().then(function() {
+        // Allows HTML from the Firebase to be injected into the page.
+        storyObject.$loaded().then(function() {
 
-        
-        var storyString = storyObject.story.toString();
-      
-        $scope.html = storyString;
-$scope.trustedHtml = $sce.trustAsHtml($scope.html);
 
-    });
-       
+            var storyString = storyObject.story.toString();
+
+            $scope.html = storyString;
+            $scope.trustedHtml = $sce.trustAsHtml($scope.html);
+
+        });
+
     })
 
-    .controller('TutorialCtrl', function($scope, $stateParams, $firebase, $ionicSideMenuDelegate, $state) {
-      $ionicSideMenuDelegate.canDragContent(false);
+.controller('TutorialCtrl', function($scope, $stateParams, $firebase, $ionicSideMenuDelegate, $state) {
 
-       $scope.doneTutorial = function() {
+    $ionicSideMenuDelegate.canDragContent(false);
+
+    $scope.doneTutorial = function() {
         window.localStorage.didTutorial = true;
         $state.go('app.home');
 
 
     }
 
-       
-    })
 
-    .controller('FeedbackCtrl', function($scope, $stateParams, $firebase, $ionicSideMenuDelegate, $state) {
-      $ionicSideMenuDelegate.canDragContent(true);
+})
 
-      var feedback = new Firebase("https://spkknights.firebaseio.com/feedback");
-        var sync = $firebase(feedback);
-        var theName = $scope.loggeduser.displayName;
+.controller('FeedbackCtrl', function($scope, $stateParams, $firebase, $ionicSideMenuDelegate, $state) {
+    $ionicSideMenuDelegate.canDragContent(true);
 
-        $scope.submitForm = function(feedback) {
+    var feedback = new Firebase("https://spkknights.firebaseio.com/feedback");
+    var sync = $firebase(feedback);
+    var theName = $scope.loggeduser.displayName;
 
-            sync.$push({
-                feedback: feedback.feedback,
-                name: theName
-                
+    $scope.submitForm = function(feedback) {
 
-            })
-
-            var myEl = angular.element( document.querySelector( '#feedback' ) );
-            myEl.append('<button class="button button-full button-positive"> Thanks for your feedback!</button>');
-
-        }
-       
-    })
-
-  .controller('AboutCtrl', function($scope, $stateParams, $state, $stateParams, $ionicPlatform) {
-    $scope.goToFeedback = function() {
-
-            
-
-           $state.go('app.feedback');
-
-        }
-  })
-
-    .controller('PromCtrl', function($scope, $cordovaImagePicker) {
+        sync.$push({
+            feedback: feedback.feedback,
+            name: theName
 
 
-  $scope.getPics = function() {
-                            var options = {
-   maximumImagesCount: 1,
-   width: 800,
-   height: 800,
-   quality: 80
-  };
-         $cordovaImagePicker.getPictures(options)
-    .then(function (results) {
-      for (var i = 0; i < results.length; i++) {
-        console.log('Image URI: ' + results[i]);
-      }
-    }, function(error) {
-      // error getting photos
-    });
+        })
 
+        var myEl = angular.element(document.querySelector('#feedback'));
+        myEl.append('<button class="button button-full button-positive"> Thanks for your feedback!</button>');
 
     }
 
- 
-  })
+})
 
-  .controller('PlaylistCtrl', function($scope, $stateParams) {});
+.controller('AboutCtrl', function($scope, $stateParams, $state, $stateParams, $ionicPlatform) {
+    $scope.goToFeedback = function() {
+
+
+
+        $state.go('app.feedback');
+
+    }
+})
+
+
+
+.controller('PlaylistCtrl', function($scope, $stateParams) {});
